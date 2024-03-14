@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.familycalendar.R
+import com.example.familycalendar.dataBase.ActividadClass
+import com.example.familycalendar.databinding.ItemActividadActividadesBinding
 import kotlin.random.Random
 
 class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAdapterViewHolder>() {
 
     private var context: Context? = null
-    private var listaActividades = mutableListOf<DataClaseActividades>()
+    private var listaActividades = mutableListOf<ActividadClass>()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -54,7 +57,7 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
 
     inner class ActividadesAdapterViewHolder(val binding: ItemActividadActividadesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun binding(data: DataClaseActividades) {
+        fun binding(data: ActividadClass) {
             binding.tituloActividad.text = data.titulo
             binding.fecha.text = data.fecha
             binding.horaInicial.text = data.horaInicial
@@ -62,8 +65,8 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
         }
     }
 
-    fun agregarActividades(newDataClaseActividades: List<DataClaseActividades>) {
-        listaActividades.clear()
-        listaActividades.addAll(newDataClaseActividades)
-    }
+//    fun agregarActividades(newDataClaseActividades: List<ActividadClass>) {
+//        listaActividades.clear()
+//        listaActividades.addAll(newDataClaseActividades)
+//    }
 }

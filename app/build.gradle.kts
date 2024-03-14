@@ -5,7 +5,10 @@ plugins {
 
 android {
     namespace = "com.example.familycalendar"
-    compileSdk = 33
+    compileSdk = 34
+    viewBinding{
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.example.familycalendar"

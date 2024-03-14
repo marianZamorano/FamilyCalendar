@@ -1,9 +1,10 @@
-package com.example.familycalendar.fragment
+package com.example.familycalendar
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.familycalendar.databinding.ActivityPantallaPrincipalActividadesBinding
 
 class PantallaPrincipalActividades : AppCompatActivity() {
 
@@ -13,10 +14,10 @@ class PantallaPrincipalActividades : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPantallaPrincipalActividadesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.botonIrPantallaPrincipalActividades.setOnClickListener {
-            val intent = Intent(this, PantallaPrincipal::class.java)
-            startActivity(intent)
-        }
+//        binding.botonIrPantallaPrincipalActividades.setOnClickListener {
+//            val intent = Intent(this, PantallaPrincipal::class.java)
+//            startActivity(intent)
+//        }
         binding.botonAgregarActividad.setOnClickListener {
             val intent = Intent(this, PantallaCrearActividad::class.java)
             startActivity(intent)
