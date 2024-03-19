@@ -31,7 +31,11 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
         holder: ActividadesAdapterViewHolder,
         position: Int
     ) {
-        holder.binding(listaActividades[position])
+        val actividad = listaActividades[position]
+        holder.binding.tituloActividad.text = actividad.titulo
+        holder.binding.fecha.text = actividad.fecha
+        holder.binding.horaInicial.text = actividad.horaInicial
+        holder.binding.horaFinal.text = actividad.horaFinal
         holder.binding.fondoActividadActividades.setBackgroundColor(
             holder.itemView.resources.getColor(
                 getRandomColor(),
@@ -56,14 +60,21 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
     override fun getItemCount(): Int = listaActividades.size
 
     inner class ActividadesAdapterViewHolder(val binding: ItemActividadActividadesBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun binding(data: ActividadClass) {
-            binding.tituloActividad.text = data.titulo
-            binding.fecha.text = data.fecha
-            binding.horaInicial.text = data.horaInicial
-            binding.horaFinal.text = data.horaFinal
-        }
+        RecyclerView.ViewHolder(binding.root)
+
+    fun agregarActividades(newDataActividades: List<ActividadClass>) {
+        listaActividades.clear()
+        listaActividades.addAll(newDataActividades)
+        notifyDataSetChanged()
     }
+
+//    {
+//        fun binding(data: ActividadClass) {
+//            binding.tituloActividad.text = data.titulo
+//            binding.fecha.text = data.fecha
+//            binding.horaInicial.text = data.horaInicial
+//            binding.horaFinal.text = data.horaFinal
+//        }
 
 //    fun agregarActividades(newDataClaseActividades: List<ActividadClass>) {
 //        listaActividades.clear()
