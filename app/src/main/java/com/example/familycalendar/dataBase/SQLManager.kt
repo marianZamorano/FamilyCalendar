@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class SQLManager(context: Context) : SQLiteOpenHelper(context, "sql.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE actividades (numero INT PRIMARY KEY AUTOINCREMENT, titulo TEXT, fecha DATE, horaInicial TEXT, horaFinal TEXT, detalle TEXT)")
+        db?.execSQL("CREATE TABLE actividades (numero INT PRIMARY KEY, titulo TEXT, fecha DATE, horaInicial TEXT, horaFinal TEXT, detalle TEXT)")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
