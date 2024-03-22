@@ -60,4 +60,5 @@
     <string name="romance">Romance</string>
     <string name="ficcion">Ficcion</string>
     <string name="Terror">Terror</string>
+    <string name="detalle">Detalle</string>
 </resources>

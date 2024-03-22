@@ -34,19 +34,5 @@ class PantallaPrincipalActividades : AppCompatActivity() {
         val sqlManager = SQLManager(this)
         val actividades = sqlManager.getActividadesOrdenadasPorFecha(this)
         ActividadesAdapter.agregarActividades(actividades)
-//        val actividad = DataClaseActividades(
-//            titulo = "Almuerzo familiar",
-//            fecha = "29/10/2023",
-//            horaInicial = "12:00",
-//            horaFinal = "16:30"
-//        )
-//
-//        ActividadesAdapter.agregarActividades(listOf(actividad))
-//
-//        binding.actividadesRecyclerView.apply {
-//            layoutManager =
-//                LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//            adapter = ActividadesAdapter
-//        }
     }
 }

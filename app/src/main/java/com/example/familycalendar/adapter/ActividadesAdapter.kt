@@ -67,17 +67,4 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
         listaActividades.addAll(newDataActividades)
         notifyDataSetChanged()
     }
-
-//    {
-//        fun binding(data: ActividadClass) {
-//            binding.tituloActividad.text = data.titulo
-//            binding.fecha.text = data.fecha
-//            binding.horaInicial.text = data.horaInicial
-//            binding.horaFinal.text = data.horaFinal
-//        }
-
-//    fun agregarActividades(newDataClaseActividades: List<ActividadClass>) {
-//        listaActividades.clear()
-//        listaActividades.addAll(newDataClaseActividades)
-//    }
 }
