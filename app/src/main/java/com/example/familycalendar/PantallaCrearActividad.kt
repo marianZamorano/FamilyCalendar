@@ -11,36 +11,40 @@ import com.example.familycalendar.fragment.DatePickerFragmentCrearActividad
 import com.example.familycalendar.fragment.TimePickerFragmentHoraFinalCrearActividad
 import com.example.familycalendar.fragment.TimePickerFragmentHoraInicialCrearActividad
 
-class PantallaCrearActividad : AppCompatActivity() {
+class PantallaCrearActividad : AppCompatActivity(), CrearActividadClickListener, FechaSeleccionadaListener {
 
     private lateinit var binding: ActivityPantallaCrearActividadBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPantallaCrearActividadBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.editTextFechaCrearActividad.setOnClickListener { mostrarDatePickerDialog() }
         binding.editTextHoraInicial.setOnClickListener { mostrarTimePickerDialogHoraInicial() }
         binding.editTextHoraFinal.setOnClickListener { mostrarTimePickerDialogHoraFinal() }
-        binding.botonListoCrearActividad.setOnClickListener {
-            if (testData()) {
-                var datos = ActividadClass(
-                    binding.editTextTituloActividad.text.toString(),
-                    binding.editTextDetallesCrearActividad.text.toString(),
-                    binding.editTextFechaCrearActividad.text.toString(),
-                    binding.editTextHoraInicial.text.toString(),
-                    binding.editTextHoraFinal.text.toString()
-                )
-                var sqlManager = SQLManager(this)
-                var response = sqlManager.addActividad(this, datos)
-                if (response) {
-                    Toast.makeText(this, "Actividad creada", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(this, "Todos los datos son obligatorios", Toast.LENGTH_SHORT)
+
+        binding.botonListoCrearActividad.setOnClickListener { onCrearActividadClicked() }
+    }
+
+    override fun onCrearActividadClicked() {
+        if (testData()) {
+            val datos = ActividadClass(
+                binding.editTextTituloActividad.text.toString(),
+                binding.editTextDetallesCrearActividad.text.toString(),
+                binding.editTextFechaCrearActividad.text.toString(),
+                binding.editTextHoraInicial.text.toString(),
+                binding.editTextHoraFinal.text.toString()
+            )
+            val sqlManager = SQLManager(this)
+            val response = sqlManager.addActividad(datos)
+            if (response) {
+                Toast.makeText(this, "Actividad creada", Toast.LENGTH_SHORT).show()
             }
-            val intent = Intent(this, PantallaPrincipalActividades::class.java)
-            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Todos los datos son obligatorios", Toast.LENGTH_SHORT)
         }
+        val intent = Intent(this, PantallaPrincipalActividades::class.java)
+        startActivity(intent)
     }
 
     fun testData(): Boolean {
@@ -63,18 +67,10 @@ class PantallaCrearActividad : AppCompatActivity() {
         timePicker.show(supportFragmentManager, "timeFinal")
     }
 
-    private fun onTimeSelectedHoraInicial(tiempoInicial: String) {
-        binding.editTextHoraInicial.setText("$tiempoInicial")
-    }
-
-    private fun onTimeSelectedHoraFinal(tiempoFinal: String) {
-        binding.editTextHoraFinal.setText("$tiempoFinal")
-    }
-
     private fun mostrarDatePickerDialog() {
         val datePicker =
             DatePickerFragmentCrearActividad { day, month, year ->
-                onDateSelected(
+                onFechaSeleccionada(
                     day,
                     month,
                     year
@@ -83,7 +79,15 @@ class PantallaCrearActividad : AppCompatActivity() {
         datePicker.show(supportFragmentManager, "datePicker")
     }
 
-    private fun onDateSelected(day: Int, month: Int, year: Int) {
+    private fun onTimeSelectedHoraInicial(tiempoInicial: String) {
+        binding.editTextHoraInicial.setText("$tiempoInicial")
+    }
+
+    private fun onTimeSelectedHoraFinal(tiempoFinal: String) {
+        binding.editTextHoraFinal.setText("$tiempoFinal")
+    }
+
+    override fun onFechaSeleccionada(day: Int, month: Int, year: Int) {
         binding.editTextFechaCrearActividad.setText("$day/$month/$year")
     }
 }
