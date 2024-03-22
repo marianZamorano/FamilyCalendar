@@ -8,7 +8,7 @@ import com.example.familycalendar.adapter.ActividadesAdapter
 import com.example.familycalendar.dataBase.SQLManager
 import com.example.familycalendar.databinding.ActivityPantallaPrincipalActividadesBinding
 
-class PantallaPrincipalActividades : AppCompatActivity(), AgregarActividadClickListener {
+class PantallaPrincipalActividades : AppCompatActivity() {
 
     private lateinit var binding: ActivityPantallaPrincipalActividadesBinding
     private lateinit var actividadesAdapter: ActividadesAdapter
@@ -31,7 +31,7 @@ class PantallaPrincipalActividades : AppCompatActivity(), AgregarActividadClickL
         mostrarActividades()
     }
 
-    override fun onAgregarActividadClicked() {
+    fun onAgregarActividadClicked() {
         val intent = Intent(this, PantallaCrearActividad::class.java)
         startActivity(intent)
     }

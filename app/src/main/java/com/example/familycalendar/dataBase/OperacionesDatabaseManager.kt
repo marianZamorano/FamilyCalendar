@@ -52,7 +52,6 @@ class OperacionesDatabaseManager(context: Context) {
         return actividades
     }
 
-    // DatabaseHelper inner class
     private class DatabaseHelper(context: Context) :
         SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
@@ -81,7 +80,6 @@ class OperacionesDatabaseManager(context: Context) {
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "FamilyCalendar.db"
 
-        // Table name and column names
         private const val TABLE_ACTIVIDAD = "actividades"
         private const val COLUMN_ID = "_id"
         private const val COLUMN_TITULO = "titulo"

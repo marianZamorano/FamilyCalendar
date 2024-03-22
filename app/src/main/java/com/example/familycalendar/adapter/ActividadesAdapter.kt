@@ -3,7 +3,6 @@ package com.example.familycalendar.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familycalendar.R
 import com.example.familycalendar.dataBase.ActividadClass
@@ -14,19 +13,6 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
 
     private var context: Context? = null
     private var listaActividades = mutableListOf<ActividadClass>()
-//    override fun onCreateViewHolder(
-//        parent: ViewGroup,
-//        viewType: Int
-//    ): ActividadesAdapterViewHolder {
-//        context = parent.context
-//        return ActividadesAdapterViewHolder(
-//            ItemActividadActividadesBinding.inflate(
-//                LayoutInflater.from(parent.context),
-//                parent,
-//                false
-//            )
-//        )
-//    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -47,6 +33,7 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
     ) {
         val actividad = listaActividades[position]
         holder.binding.tituloActividad.text = actividad.titulo
+        holder.binding.detalleActividad.text = actividad.detalle
         holder.binding.fecha.text = actividad.fecha
         holder.binding.horaInicial.text = actividad.horaInicial
         holder.binding.horaFinal.text = actividad.horaFinal

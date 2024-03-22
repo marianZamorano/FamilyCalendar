@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/detalle_crear_actividad"
+                android:id="@+id/detalle_actividad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -40,6 +40,7 @@
                 android:background="@color/blanco"
                 android:text="@string/detalle"
                 android:textSize="15sp"
+                android:maxLines="2"
                 android:textColor="@color/plomoOscuro"
                 app:layout_constraintTop_toBottomOf="@+id/titulo_actividad"
                 app:layout_constraintLeft_toLeftOf="parent" />

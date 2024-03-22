@@ -11,7 +11,7 @@ import com.example.familycalendar.fragment.DatePickerFragmentCrearActividad
 import com.example.familycalendar.fragment.TimePickerFragmentHoraFinalCrearActividad
 import com.example.familycalendar.fragment.TimePickerFragmentHoraInicialCrearActividad
 
-class PantallaCrearActividad : AppCompatActivity(), CrearActividadClickListener, FechaSeleccionadaListener {
+class PantallaCrearActividad : AppCompatActivity() {
 
     private lateinit var binding: ActivityPantallaCrearActividadBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class PantallaCrearActividad : AppCompatActivity(), CrearActividadClickListener,
         binding.botonListoCrearActividad.setOnClickListener { onCrearActividadClicked() }
     }
 
-    override fun onCrearActividadClicked() {
+    fun onCrearActividadClicked() {
         if (testData()) {
             val datos = ActividadClass(
                 binding.editTextTituloActividad.text.toString(),
@@ -87,7 +87,7 @@ class PantallaCrearActividad : AppCompatActivity(), CrearActividadClickListener,
         binding.editTextHoraFinal.setText("$tiempoFinal")
     }
 
-    override fun onFechaSeleccionada(day: Int, month: Int, year: Int) {
+    fun onFechaSeleccionada(day: Int, month: Int, year: Int) {
         binding.editTextFechaCrearActividad.setText("$day/$month/$year")
     }
 }
