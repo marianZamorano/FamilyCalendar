@@ -21,10 +21,6 @@ class PantallaCrearActividad : AppCompatActivity() {
         binding.editTextFechaCrearActividad.setOnClickListener { mostrarDatePickerDialog() }
         binding.editTextHoraInicial.setOnClickListener { mostrarTimePickerDialogHoraInicial() }
         binding.editTextHoraFinal.setOnClickListener { mostrarTimePickerDialogHoraFinal() }
-        binding.botonVolverAtrasCrearActividad.setOnClickListener {
-            val intent = Intent(this, PantallaPrincipalActividades::class.java)
-            startActivity(intent)
-        }
         binding.botonListoCrearActividad.setOnClickListener {
             if (testData()) {
                 var datos = ActividadClass(

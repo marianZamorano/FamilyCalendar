@@ -25,27 +25,27 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/ir_a_pantalla_principal_boton_crear_actividad"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/boton_pantalla_principal"
-        android:contentDescription="@string/boton_para_ir_a_la_pantalla_principal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/ir_a_pantalla_principal_boton_crear_actividad"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/boton_pantalla_principal"-->
+<!--        android:contentDescription="@string/boton_para_ir_a_la_pantalla_principal"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageButton
-        android:id="@+id/boton_volver_atras_crear_actividad"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/boton_volver_atras"
-        android:contentDescription="@string/boton_para_volver_atras"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageButton-->
+<!--        android:id="@+id/boton_volver_atras_crear_actividad"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:background="@drawable/boton_volver_atras"-->
+<!--        android:contentDescription="@string/boton_para_volver_atras"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageButton
         android:id="@+id/boton_listo_crear_actividad"
