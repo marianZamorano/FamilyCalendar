@@ -2,6 +2,7 @@ package com.example.familycalendar.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.familycalendar.R
@@ -9,62 +10,40 @@ import com.example.familycalendar.dataBase.ActividadClass
 import com.example.familycalendar.databinding.ItemActividadActividadesBinding
 import kotlin.random.Random
 
-class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAdapterViewHolder>() {
+class ActividadesAdapter(
+    private val context: Context,
+    private val actividades: List<ActividadClass>,
+    private val listener: ActividadClickListener
+) : RecyclerView.Adapter<ActividadesAdapter.ActividadesAdapterViewHolder>() {
 
-    private var context: Context? = null
-    private var listaActividades = mutableListOf<ActividadClass>()
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ActividadesAdapterViewHolder {
-        context = parent.context
-        return ActividadesAdapterViewHolder(
-            ItemActividadActividadesBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActividadesAdapterViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_actividad, parent, false)
+        return ActividadesAdapterViewHolder(view, listener)
+    }
+    override fun onBindViewHolder(holder: ActividadesAdapterViewHolder, position: Int) {
+        holder.bindView(actividades[position])
     }
 
-    override fun onBindViewHolder(
-        holder: ActividadesAdapterViewHolder,
-        position: Int
-    ) {
-        val actividad = listaActividades[position]
-        holder.binding.tituloActividad.text = actividad.titulo
-        holder.binding.fecha.text = actividad.fecha
-        holder.binding.horaInicial.text = actividad.horaInicial
-        holder.binding.horaFinal.text = actividad.horaFinal
-        holder.binding.fondoActividadActividades.setBackgroundColor(
-            holder.itemView.resources.getColor(
-                getRandomColor(),
-                null
-            )
-        )
+    override fun getItemCount() = actividades.size
+
+    class ActividadesAdapterViewHolder(
+        itemView: View,
+        private val listener: ActividadClickListener
+    ) : RecyclerView.ViewHolder(itemView) {
+
+        fun bindView(actividad: ActividadClass) {
+            itemView.titulo_actividad.text = actividad.titulo
+            itemView.fecha.text = actividad.fecha
+            itemView.hora_inicial.text = actividad.horaInicial
+            itemView.hora_final.text = actividad.horaFinal
+
+            itemView.setOnClickListener {
+                listener.onActividadClick(actividad)
+            }
+        }
     }
 
-    private fun getRandomColor(): Int {
-        val colorCode = mutableListOf<Int>()
-        colorCode.add(R.color.lilaclaro)
-        colorCode.add(R.color.verdeTurquesaClaro)
-        colorCode.add(R.color.aquamarine)
-        colorCode.add(R.color.lightSkyBlue)
-        colorCode.add(R.color.violet)
-        colorCode.add(R.color.verdeAmarillo)
-        val numero = Random.nextInt(colorCode.size)
-        return colorCode.get(numero)
-
-    }
-
-    override fun getItemCount(): Int = listaActividades.size
-
-    inner class ActividadesAdapterViewHolder(val binding: ItemActividadActividadesBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    fun agregarActividades(newDataActividades: List<ActividadClass>) {
-        listaActividades.clear()
-        listaActividades.addAll(newDataActividades)
-        notifyDataSetChanged()
+    interface ActividadClickListener {
+        fun onActividadClick(actividad: ActividadClass)
     }
 }
