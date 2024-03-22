@@ -2,12 +2,9 @@ package com.example.familycalendar
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.familycalendar.adapter.ActividadesAdapter
-import com.example.familycalendar.dataBase.ActividadClass
 import com.example.familycalendar.dataBase.SQLManager
 import com.example.familycalendar.databinding.ActivityPantallaPrincipalActividadesBinding
 
@@ -25,13 +22,7 @@ class PantallaPrincipalActividades : AppCompatActivity(), AgregarActividadClickL
             onAgregarActividadClicked()
         }
 
-        actividadesAdapter.setOnItemClickListener(object : ActividadesAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val actividadSeleccionada = actividadesAdapter.getActividadAt(position)
-                mostrarDialogoEliminarActividad(actividadSeleccionada)
-            }
-        })
-
+        actividadesAdapter = ActividadesAdapter()
         binding.actividadesRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = actividadesAdapter
@@ -49,28 +40,5 @@ class PantallaPrincipalActividades : AppCompatActivity(), AgregarActividadClickL
         val sqlManager = SQLManager(this)
         val actividades = sqlManager.getActividadesOrdenadasPorFecha()
         actividadesAdapter.agregarActividades(actividades)
-    }
-
-    private fun mostrarDialogoEliminarActividad(actividad: ActividadClass) {
-        AlertDialog.Builder(this)
-            .setTitle("Eliminar actividad")
-            .setMessage("¿Estás seguro de que quieres eliminar esta actividad?")
-            .setPositiveButton("Sí") { _, _ ->
-                eliminarActividad(actividad)
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
-
-    private fun eliminarActividad(actividad: ActividadClass) {
-        val sqlManager = SQLManager(this)
-        val eliminada = sqlManager.eliminarActividad(actividad)
-
-        if (eliminada) {
-            Toast.makeText(this, "Actividad eliminada", Toast.LENGTH_SHORT).show()
-            mostrarActividades()
-        } else {
-            Toast.makeText(this, "Error al eliminar la actividad", Toast.LENGTH_SHORT).show()
-        }
     }
 }

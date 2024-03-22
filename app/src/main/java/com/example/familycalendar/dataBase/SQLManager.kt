@@ -12,8 +12,4 @@ class SQLManager(context: Context) {
     fun getActividadesOrdenadasPorFecha(): ArrayList<ActividadClass> {
         return databaseManager.getActividadesOrdenadasPorFecha()
     }
-
-    fun eliminarActividad(actividad: ActividadClass): Boolean {
-        return databaseManager.eliminarActividad(actividad)
-    }
 }

@@ -14,7 +14,6 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
 
     private var context: Context? = null
     private var listaActividades = mutableListOf<ActividadClass>()
-    private var itemClickListener: AdapterView.OnItemClickListener? = null
 //    override fun onCreateViewHolder(
 //        parent: ViewGroup,
 //        viewType: Int
@@ -28,14 +27,6 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
 //            )
 //        )
 //    }
-
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-    }
-
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        itemClickListener = listener
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -65,36 +56,19 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
                 null
             )
         )
-
-        holder.itemView.setOnClickListener {
-            itemClickListener?.onItemClick(position)
-        }
     }
 
-//    private fun getRandomColor(): Int {
-//        val colorCode = mutableListOf<Int>()
-//        colorCode.add(R.color.lilaclaro)
-//        colorCode.add(R.color.verdeTurquesaClaro)
-//        colorCode.add(R.color.aquamarine)
-//        colorCode.add(R.color.lightSkyBlue)
-//        colorCode.add(R.color.violet)
-//        colorCode.add(R.color.verdeAmarillo)
-//        val numero = Random.nextInt(colorCode.size)
-//        return colorCode.get(numero)
-//
-//    }
-
     private fun getRandomColor(): Int {
-        val colorCode = mutableListOf(
-            R.color.lilaclaro,
-            R.color.verdeTurquesaClaro,
-            R.color.aquamarine,
-            R.color.lightSkyBlue,
-            R.color.violet,
-            R.color.verdeAmarillo
-        )
+        val colorCode = mutableListOf<Int>()
+        colorCode.add(R.color.lilaclaro)
+        colorCode.add(R.color.verdeTurquesaClaro)
+        colorCode.add(R.color.aquamarine)
+        colorCode.add(R.color.lightSkyBlue)
+        colorCode.add(R.color.violet)
+        colorCode.add(R.color.verdeAmarillo)
         val numero = Random.nextInt(colorCode.size)
-        return colorCode[numero]
+        return colorCode.get(numero)
+
     }
 
     override fun getItemCount(): Int = listaActividades.size

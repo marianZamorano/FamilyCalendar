@@ -52,15 +52,6 @@ class OperacionesDatabaseManager(context: Context) {
         return actividades
     }
 
-    fun eliminarActividad(actividad: ActividadClass): Boolean {
-        val db = dbHelper.writableDatabase
-        val whereClause = "$COLUMN_TITULO = ? AND $COLUMN_FECHA = ?"
-        val whereArgs = arrayOf(actividad.titulo, actividad.fecha)
-        val success = db.delete(TABLE_ACTIVIDAD, whereClause, whereArgs) > 0
-        db.close()
-        return success
-    }
-
     // DatabaseHelper inner class
     private class DatabaseHelper(context: Context) :
         SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
