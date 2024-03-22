@@ -2,60 +2,65 @@ package com.example.familycalendar.dataBase
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.familycalendar.dataBase.ActividadContract
-import java.sql.SQLException
 
 class SQLManager(context: Context) : SQLiteOpenHelper(context, "sql.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("CREATE TABLE actividades (numero INT PRIMARY KEY, titulo TEXT, fecha DATE, horaInicial TEXT, horaFinal TEXT, detalle TEXT)")
     }
-    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        if (db == null) {
-            return
-        }
 
+    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
+    }
+
+    fun addActividad(context: Context, datos: ActividadClass): Boolean {
+        var response = true
+        var contentValues = ContentValues()
+        contentValues.put("titulo", datos.titulo)
+        contentValues.put("fecha", datos.fecha)
+        contentValues.put("horaInicial", datos.horaInicial)
+        contentValues.put("horafinal", datos.horaFinal)
+        contentValues.put("detalle", datos.detalle)
+        var db = SQLManager(context)
+        var manager = db.writableDatabase
         try {
-            db.execSQL(ActividadContract.SQL_DELETE_ENTRIES)
-        } catch (e: SQLException) {
+            manager.insert("actividades", null, contentValues)
+        } catch (e: Exception) {
             print(e.message)
+            response = false
+        } finally {
+            db.close()
         }
-
-        onCreate(db)
+        return response
     }
 
-    fun addActividad(actividad: ActividadClass): Long {
-        val db = writableDatabase
-        val contentValues = ContentValues()
-
-        contentValues.put("titulo", actividad.titulo)
-        contentValues.put("fecha", actividad.fecha)
-        contentValues.put("hora_inicial", actividad.horaInicial)
-        contentValues.put("hora_final", actividad.horaFinal)
-        contentValues.put("detalle", actividad.detalle)
-
-        return db.insert("actividades", null, contentValues)
-    }
-
-    fun getActividades(): Cursor {
-        return readableDatabase.rawQuery("SELECT * FROM ${ActividadContract.TABLE_NAME} ORDER BY ${ActividadContract.COLUMN_NAME_FECHA}", null)
-    }
-
-    fun getActividadesOrdenadasPorFecha(): List<ActividadClass> {
-        val actividadMapper = ActividadMapper()
+    fun getActividadesOrdenadasPorFecha(context: Context): List<ActividadClass> {
         val actividades = mutableListOf<ActividadClass>()
+        val db = SQLManager(context).readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM actividades ORDER BY fecha", null)
 
-        val db = readableDatabase
-        val selectQuery = "SELECT * FROM ${ActividadContract.TABLE_NAME} ORDER BY ${ActividadContract.COLUMN_NAME_FECHA}"
-        val cursor = db.rawQuery(selectQuery, null)
+        // Obtener los índices de columna una vez
+        val tituloIndex = cursor.getColumnIndex("titulo")
+        val fechaIndex = cursor.getColumnIndex("fecha")
+        val horaInicialIndex = cursor.getColumnIndex("horaInicial")
+        val horaFinalIndex = cursor.getColumnIndex("horaFinal")
+        val detalleIndex = cursor.getColumnIndex("detalle")
 
-        actividades.addAll(actividadMapper.mapCursorToActividades(cursor))
+        if (cursor.moveToFirst()) {
+            do {
+                val titulo = cursor.getString(tituloIndex)
+                val fecha = cursor.getString(fechaIndex)
+                val horaInicial = cursor.getString(horaInicialIndex)
+                val horaFinal = cursor.getString(horaFinalIndex)
+                val detalle = cursor.getString(detalleIndex)
+
+                // Agregar la actividad a la lista
+                actividades.add(ActividadClass(titulo, fecha, horaInicial, horaFinal, detalle))
+            } while (cursor.moveToNext())
+        }
 
         cursor.close()
         db.close()
-
         return actividades
     }
 }
