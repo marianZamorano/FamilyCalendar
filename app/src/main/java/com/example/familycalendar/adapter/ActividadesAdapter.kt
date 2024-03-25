@@ -49,10 +49,9 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
         val colorCode = mutableListOf<Int>()
         colorCode.add(R.color.lilaclaro)
         colorCode.add(R.color.verdeTurquesaClaro)
-        colorCode.add(R.color.aquamarine)
+        colorCode.add(R.color.celestePastel)
         colorCode.add(R.color.lightSkyBlue)
-        colorCode.add(R.color.violet)
-        colorCode.add(R.color.verdeAmarillo)
+        colorCode.add(R.color.celesteGrisClaro)
         val numero = Random.nextInt(colorCode.size)
         return colorCode.get(numero)
 
