@@ -7,7 +7,7 @@
 
     <style name="Theme.FamilyCalendar" parent="Base.Theme.FamilyCalendar" />
 
-    <style name="datePickerTheme" parent="android:Theme.Material.Light.Dialog">
+    <style name="datePickerTheme" parent="android:ThemeOverlay.Material.Dialog">
         <item name="android:colorAccent">@color/celesteGrisMedio</item>
     </style>
 
