@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="lilaclaro">#FFBB86FC</color>
-    <color name="purpura">#FF6200EE</color>
-    <color name="morado">#FF3700B3</color>
     <color name="verdeTurquesaClaro">#FF03DAC5</color>
-    <color name="verdeOscuro">#FF018786</color>
     <color name="negro">#FF000000</color>
     <color name="blanco">#FFFFFFFF</color>
-    <color name="colorpiel">#D16363</color>
-    <color name="rojo">#FF0000</color>
-    <color name="rosa">#F5533B</color>
-    <color name="lila">#B886F8</color>
-    <color name="amarillo">#FFFF00</color>
-    <color name="celestePastel">#A9F5F2</color>
-    <color name="verde">#4BF286</color>
-    <color name="azulclaro">#88A2F2</color>
-    <color name="naranjaclaro">#F2622E</color>
-    <color name="amarilloOpaco">#F2E313</color>
-    <color name="amarilloOscuro">#F2CF1D</color>
-    <color name="royalBlue">#3081DB</color>
-    <color name="aquamarine">#6EFAB7</color>
     <color name="lightSkyBlue">#84D4FA</color>
-    <color name="violet">#F284FA</color>
-    <color name="verdeAmarillo">#A9FA6D</color>
-    <color name="plomoOscuro">#727272</color>
-    <color name="gris">#BEBEBE</color>
-    <color name="rosabebe">#E67F70</color>
-
+    <color name="azulGrisOscuro">#3D6980</color>
+    <color name="celestePastel">#B7EBEB</color>
+    <color name="celeste">#B3E6E6</color>
+    <color name="celesteVerdosoOscuro">#3A5C5C</color>
+    <color name="celesteGrisMedio">#7B9E9E</color>
+    <color name="celesteGrisClaro">#96C0C0</color>
+    <color name="celesteGrisOscuro">#617C7C</color>
+    <color name="grisClaro">#EDF8FA</color>
 </resources>

@@ -4,31 +4,39 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.familycalendar.R
+import com.example.familycalendar.dataBase.ActividadClass
+import com.example.familycalendar.databinding.ItemActividadActividadesBinding
 import kotlin.random.Random
 
 class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAdapterViewHolder>() {
 
     private var context: Context? = null
-    private var listaActividades = mutableListOf<DataClaseActividades>()
+    private var listaActividades = mutableListOf<ActividadClass>()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ActividadesAdapterViewHolder {
         context = parent.context
-        return ActividadesAdapterViewHolder(
-            ItemActividadActividadesBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+        val binding = ItemActividadActividadesBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
+        return ActividadesAdapterViewHolder(binding)
     }
 
     override fun onBindViewHolder(
         holder: ActividadesAdapterViewHolder,
         position: Int
     ) {
-        holder.binding(listaActividades[position])
+        val actividad = listaActividades[position]
+        holder.binding.tituloActividad.text = actividad.titulo
+        holder.binding.detalleActividad.text = actividad.detalle
+        holder.binding.fecha.text = actividad.fecha
+        holder.binding.horaInicial.text = actividad.horaInicial
+        holder.binding.horaFinal.text = actividad.horaFinal
         holder.binding.fondoActividadActividades.setBackgroundColor(
             holder.itemView.resources.getColor(
                 getRandomColor(),
@@ -41,10 +49,9 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
         val colorCode = mutableListOf<Int>()
         colorCode.add(R.color.lilaclaro)
         colorCode.add(R.color.verdeTurquesaClaro)
-        colorCode.add(R.color.aquamarine)
+        colorCode.add(R.color.celesteGrisMedio)
         colorCode.add(R.color.lightSkyBlue)
-        colorCode.add(R.color.violet)
-        colorCode.add(R.color.verdeAmarillo)
+        colorCode.add(R.color.celesteGrisClaro)
         val numero = Random.nextInt(colorCode.size)
         return colorCode.get(numero)
 
@@ -53,17 +60,11 @@ class ActividadesAdapter : RecyclerView.Adapter<ActividadesAdapter.ActividadesAd
     override fun getItemCount(): Int = listaActividades.size
 
     inner class ActividadesAdapterViewHolder(val binding: ItemActividadActividadesBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun binding(data: DataClaseActividades) {
-            binding.tituloActividad.text = data.titulo
-            binding.fecha.text = data.fecha
-            binding.horaInicial.text = data.horaInicial
-            binding.horaFinal.text = data.horaFinal
-        }
-    }
+        RecyclerView.ViewHolder(binding.root)
 
-    fun agregarActividades(newDataClaseActividades: List<DataClaseActividades>) {
+    fun agregarActividades(newDataActividades: List<ActividadClass>) {
         listaActividades.clear()
-        listaActividades.addAll(newDataClaseActividades)
+        listaActividades.addAll(newDataActividades)
+        notifyDataSetChanged()
     }
 }

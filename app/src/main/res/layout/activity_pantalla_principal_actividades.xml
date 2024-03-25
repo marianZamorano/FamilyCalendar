@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/celestePastel"
     tools:context=".PantallaPrincipalActividades">
 
     <View
         android:id="@+id/fondo_seccion_actividades"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="@color/verde"
+        android:background="@color/blanco"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,22 +20,24 @@
         android:id="@+id/seccion_actividades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/actividades"
-        android:textSize="35sp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/pacifico_regular"
+        android:text="@string/family_calendar_pantalla_principal"
+        android:textColor="@color/azulGrisOscuro"
+        android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/boton_ir_pantalla_principal_actividades"
+    <ImageView
+        android:id="@+id/logo"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/boton_pantalla_principal"
-        android:contentDescription="@string/boton_para_ir_a_la_pantalla_principal"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="65dp"
+        android:src="@drawable/logo"
+        app:layout_constraintLeft_toRightOf="@+id/seccion_actividades"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -43,26 +46,35 @@
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/boton_agregar_verde"
+        android:backgroundTint="@color/blanco"
         android:contentDescription="@string/boton_para_agregar_una_actividad"
         android:elevation="1dp"
+        android:src="@drawable/boton_agregar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seccion_actividades">
+        app:layout_constraintTop_toBottomOf="@id/fondo_seccion_actividades">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/actividades_recycler_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_actividad_actividades">
+            android:orientation="vertical">
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/actividades_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_actividad_actividades">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
